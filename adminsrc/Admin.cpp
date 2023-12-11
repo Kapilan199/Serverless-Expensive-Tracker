@@ -20,6 +20,7 @@ void display_rows(bw::BWCRUD & db) {
 
 void Admin::submitReport(ExpenseEntry report) {
     // code to submit an expense report as an admin
+    
     // this would add a data record to the database
     constexpr const char * sql_drop =   "DROP TABLE IF EXISTS temp";
     constexpr const char * db_file =    DB_PATH "/expenseEntry.db";
