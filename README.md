@@ -1,6 +1,6 @@
 # Company Expense Tracker
  
- Authors: [Kapilan Ramasamy](https://github.com/Kapilan199), [Mike Chavez](https://github.com/mchav138), [David Frias-Sanchez](https://github.com/SirBossDavid), [Miguel Gallegos](https://github.com/mgall063)
+ Authors: [Kapilan Ramasamy](https://github.com/Kapilan199)
 
 ## Project Description
 The Company Expense Tracker is a C++ application designed for financial management and expense tracking processes within a company or organization. It serves as a centralized platform that enables employees to log their expenses and provides administrators with the ability to manage, monitor, and control company spending effectively. This project addresses a critical need for businesses, especially in an age where financial efficiency is paramount.
