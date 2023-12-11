@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page 2</title>
+</head>
+<body>
+    <h1>This is Page 2</h1>
+    <button onclick="goToPage1()">Go to Page 1</button>
+    
+    <!-- Placeholder for dynamic content -->
+    <div id="dynamicContent">
+        <!-- Data from C++ program will be inserted here -->
+    </div>
+
+    <script>
+        function goToPage1() {
+            window.location.href = 'http://localhost:3000/page1';
+        }
+
+        // Function to fetch and display dynamic content
+        function fetchAndDisplayData() {
+            fetch('http://localhost:3000/display') // Fetch data from the server
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('dynamicContent').innerHTML = data; // Insert the received data into the placeholder
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // Call the function to fetch and display data when the page loads
+        window.onload = fetchAndDisplayData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Page Data Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+         h1 {
+            margin-top: -500px;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+            width: 100%;
+            margin-left: -400px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+       <h1>Welcome to the Employee Page</h1>
+    <form id="myForm">
+        <label for="dataInput">Enter Amount:</label>
+        <input type="text" id="dataInput" name="dataInput">
+        <label for="dataInput1">Enter Category:</label>
+        <input type="text" id="dataInput1" name="dataInput1">
+        <label for="dataInput2">Enter Description:</label>
+        <input type="text" id="dataInput2" name="dataInput2">
+        <label for="dataInput3">Enter Date:</label>
+        <input type="text" id="dataInput3" name="dataInput3">
+        <button type="button" onclick="sendData()">Submit</button>
+    </form>
+
+    <script>
+        function sendData() {
+            const data = document.getElementById('dataInput').value;
+            const data1 = document.getElementById('dataInput1').value;
+            const data2 = document.getElementById('dataInput2').value;
+            const data3 = document.getElementById('dataInput3').value;
+
+            const dataArray = [data, data1, data2, data3]; // Collect data in an array
+
+            fetch('/submit_employee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ dataArray: dataArray }) // Send as an array in JSON payload
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response from server:', data);
+                // Handle the response from the server as needed
+                window.alert("Data Successfully added to Database");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+             
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Your existing styles here */
+
+        /* Additional styles for login form */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+            width: 100%;
+            margin-top: 20px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Welcome to the Login Page</h1>
+        <form id="loginForm" class="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+
+            <button type="button" onclick="login(event)">Login</button>
+        </form>
+        
+        <!-- Your existing form remains unchanged -->
+        <form id="myForm" class="login-form">
+            <!-- ... (existing form content) ... -->
+        </form>
+    </div>
+
+    <script>
+    function login(event) {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Perform basic validation (replace this with your authentication logic)
+    if (username === 'admin' && password === 'password') {
+        // If login is successful, allow access to the data manipulation form
+        document.getElementById('myForm').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+        window.location.href = 'http://localhost:3000/admin'
+    } else if (username === 'employee' && password === 'password') {
+        // If login is successful, allow access to the data manipulation form
+        document.getElementById('myForm').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+        window.location.href = 'http://localhost:3000/employee'
+    } else {
+        alert('Invalid username or password. Please try again.');
+    }
+}
+
+        function sendData() {
+            const data = document.getElementById('dataInput').value;
+            const data1 = document.getElementById('dataInput1').value;
+            const data2 = document.getElementById('dataInput2').value;
+            const data3 = document.getElementById('dataInput3').value;
+
+            const dataArray = [data, data1, data2, data3]; // Collect data in an array
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ dataArray: dataArray }) // Send as an array in JSON payload
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response from server:', data);
+                // Handle the response from the server as needed
+                window.alert("Data Successfully added to Database");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+             
+        }
+    </script>
+</body>
+</html>

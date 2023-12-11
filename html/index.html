@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Form to C++</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="dataInput">Enter Data:</label>
+        <input type="text" id="dataInput" name="dataInput">
+        <button type="button" onclick="sendData()">Submit</button>
+    </form>
+
+    <script>
+        function sendData() {
+            const data = document.getElementById('dataInput').value;
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: data })
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response from server:', data);
+                // Handle the response from the server as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+
